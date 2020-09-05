@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -442,6 +442,7 @@ const RECIPES = [
 ];
 
 export default function HomeScreen({ navigation }) {
+  const [list, setList] = useState(RECIPES);
   const renderRecipeItem = ({ item, index }) => {
     return (
       <Card customStyle={{ marginBottom: 15 }}>
@@ -494,17 +495,31 @@ export default function HomeScreen({ navigation }) {
       </Card>
     );
   };
+
+  const searchedText = (text) => {
+    console.log("text", text);
+    const filteredList = RECIPES.filter((item) => {
+      const itemName = item.name.toUpperCase();
+      const userTypeData = text.toUpperCase();
+
+      return itemName.indexOf(userTypeData) > -1;
+    });
+
+    setList(filteredList);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Flat list for one item per column */}
       <FlatList
-        data={RECIPES}
+        data={list}
         renderItem={renderRecipeItem}
         keyExtractor={(item) => item.name}
         contentContainerStyle={{ margin: 20, paddingBottom: 35 }}
         ListHeaderComponent={
           <View style={{ marginBottom: 20 }}>
             <TextInput
+              onChangeText={(text) => searchedText(text)}
               placeholder="Search by recipe name"
               style={styles.textInput}
             ></TextInput>
