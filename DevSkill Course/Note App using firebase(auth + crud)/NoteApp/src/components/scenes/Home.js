@@ -12,6 +12,7 @@ import { firebase } from "../firebase/config";
 import { AntDesign } from "@expo/vector-icons";
 import Card from "../Card";
 import { Feather } from "@expo/vector-icons";
+import { showMessage } from "react-native-flash-message";
 
 export default function Home({ navigation, extraData }) {
   const [notes, setNotes] = useState(null);

@@ -30,29 +30,27 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <SafeAreaView>
-        <Stack.Navigator>
-          {user ? (
-            <>
-              <Stack.Screen name="Home" options={{ headerShown: false }}>
-                {(props) => <Home {...props} extraData={user} />}
-              </Stack.Screen>
-              <Stack.Screen name="Create" component={Create} />
-              <Stack.Screen name="Update" component={Update} />
-            </>
-          ) : (
-            <>
-              <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen name="Signup" component={Signup} />
-            </>
-          )}
-        </Stack.Navigator>
-        <FlashMessage position="top" />
-      </SafeAreaView>
+      <Stack.Navigator>
+        {user ? (
+          <>
+            <Stack.Screen name="Home" options={{ headerShown: false }}>
+              {(props) => <Home {...props} extraData={user} />}
+            </Stack.Screen>
+            <Stack.Screen name="Create" component={Create} />
+            <Stack.Screen name="Update" component={Update} />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Signup" component={Signup} />
+          </>
+        )}
+      </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
   );
 }

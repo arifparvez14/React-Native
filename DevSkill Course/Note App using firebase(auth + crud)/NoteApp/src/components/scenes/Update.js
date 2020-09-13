@@ -6,9 +6,9 @@ import {
   TextInput,
   ActivityIndicator,
 } from "react-native";
-import { not } from "react-native-reanimated";
 import Button from "../Button";
 import { firebase } from "../firebase/config";
+import { showMessage } from "react-native-flash-message";
 
 export default function Update({ navigation, route }) {
   const userId = route.params.userId;
