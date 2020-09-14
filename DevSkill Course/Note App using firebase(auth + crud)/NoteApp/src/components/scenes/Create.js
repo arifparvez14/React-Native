@@ -9,6 +9,7 @@ import {
 import Button from "../Button";
 import { firebase } from "../firebase/config";
 import { showMessage } from "react-native-flash-message";
+import { Formik, useFormik } from "formik";
 
 export default function Create({ navigation, route }) {
   const [note, setNote] = useState(null);
@@ -57,17 +58,43 @@ export default function Create({ navigation, route }) {
       <View style={styles.wrapper}>
         <Text style={styles.title}>Create Note</Text>
 
-        <TextInput
+        {/* <TextInput
           onChangeText={(text) => setNote(text)}
           placeholder="Write down your notes"
           style={styles.input}
           value={note}
-        />
-        {loading ? (
+        /> */}
+
+        <Formik initialValues={{ name: "" }} onSubmit={(values, action) => {}}>
+          {(formikprops) => {
+            return (
+              <View>
+                <TextInput
+                  onChangeText={formikprops.handleChange("name")}
+                  placeholder="Note name"
+                  style={styles.input}
+                  value={note}
+                />
+
+                {loading ? (
+                  <ActivityIndicator style={{ marginTop: 25 }} />
+                ) : (
+                  <Button
+                    title="SAVE"
+                    backgroundColor="blue"
+                    onPress={onSave}
+                  />
+                )}
+              </View>
+            );
+          }}
+        </Formik>
+
+        {/* {loading ? (
           <ActivityIndicator style={{ marginTop: 25 }} />
         ) : (
           <Button title="SAVE" backgroundColor="blue" onPress={onSave}></Button>
-        )}
+        )} */}
       </View>
     </View>
   );
