@@ -30,4 +30,3 @@ Bootcamp App
  - Figma: https://www.figma.com/file/FUob0pl9tzvecnOItKJ8Up/bootcamps?node-id=0%3A1
  - App Github: https://github.com/Saad-Bashar/BootcampApp
  - App API Github: https://github.com/Saad-Bashar/BootcampApi
- - 
